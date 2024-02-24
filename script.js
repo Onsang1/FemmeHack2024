@@ -348,7 +348,7 @@ function routeToClosestMarker() {
             }
         });
 
-        const closestMarkerObject = findMarkerById(closestMarker.id);
+        // const closestMarkerObject = findMarkerById(closestMarker.id);
 
         // If a closest marker is found, create a route to it
         if (closestMarker) {
