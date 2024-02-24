@@ -17,12 +17,29 @@
   box-sizing: border-box; /* Makes sure padding doesn't add to the width */
 }
 .in-line {
-  display:inline-block;
-  margin-right:5px;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 /* Map styles */
 #map {
   flex-grow: 1; /* Takes up the remaining width */
   height: 100vh; /* Full height */
+}
+
+.leaflet-top leaflet-right {
+  position: absolute !important;
+  top: 200px !important;
+  left: 200px !important;
+  z-index: 1000 !important;
+}
+
+.leaflet-routing-container
+  leaflet-bar
+  leaflet-routing-collapsible
+  leaflet-control {
+  position: absolute !important;
+  top: 200px !important;
+  left: 200px !important;
+  z-index: 1000 !important;
 }

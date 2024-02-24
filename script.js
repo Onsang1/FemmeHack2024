@@ -270,4 +270,15 @@ function getLocation() {
         console.error('Geolocation is not supported by this browser.');
     }
 }
+
+
+var topRight = document.querySelector('.leaflet-top leaflet-right');
+
+if (topRight) {
+    // If topRight is a valid DOM node, append the element to it
+    topRight.appendChild(yourElementToAppend);
+} else {
+    console.error('Could not find the topRight element or it is not a valid DOM node.');
+}
+
 display_building_names();
