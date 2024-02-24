@@ -135,150 +135,235 @@ var blueCheckbox = document.getElementById('blue-checkbox');
 var greenCheckbox = document.getElementById('green-checkbox');
 var orangeCheckbox = document.getElementById('orange-checkbox');
 
-var redMarkers = L.layerGroup();
-var blueMarkers = L.layerGroup();
-var greenMarkers = L.layerGroup();
-var orangeMarkers = L.layerGroup();
+var redMarkers = L.layerGroup().addTo(map);
+var blueMarkers = L.layerGroup().addTo(map);
+var greenMarkers = L.layerGroup().addTo(map);
+var orangeMarkers = L.layerGroup().addTo(map);
 
-// function to create markers and display on map
-function display_building_names() {
+// Function to clear all markers from their respective layers
+function clearMarkers() {
+    redMarkers.clearLayers();
+    blueMarkers.clearLayers();
+    greenMarkers.clearLayers();
+    orangeMarkers.clearLayers();
+}
 
-    if (map.hasLayer(redMarkers)){
-        map.removeLayer(redMarkers);
-    }
-    if(map.hasLayer(blueMarkers)){
-        map.removeLayer(blueMarkers);
-    } 
 
-    if(map.hasLayer(greenMarkers)){
-        map.removeLayer(greenMarkers);
-    } 
-    if(map.hasLayer(orangeMarkers)){
-        map.removeLayer(orangeMarkers);
-    }
-
-    // console.log(redCheckbox.checked);
-
-    // create markers with names
-    for (var i = 0; i < markerData.length; i++) {
-        if (markerData[i].access == "red" && redCheckbox.checked) {
-            var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleRed, 
-                id:markerData[i].id, name:markerData[i].name}).addTo(redMarkers);
-            map.addLayer(redMarkers);
-        }
-
-        if(markerData[i].access == "blue" && blueCheckbox.checked){
-            var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleBlue, 
-                id:markerData[i].id, name:markerData[i].name}).addTo(blueMarkers);
-            map.addLayer(blueMarkers);
-        }
-        
-        if(markerData[i].access == "green" && greenCheckbox.checked){
-            var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleGreen,
-                id:markerData[i].id, name:markerData[i].name}).addTo(greenMarkers);
-            map.addLayer(greenMarkers);
-        }
-        
-        if(markerData[i].access == "orange" && orangeCheckbox.checked){
-            var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleOrange,
-                id:markerData[i].id, name:markerData[i].name}).addTo(orangeMarkers);
-            map.addLayer(orangeMarkers);
-        }
-       
-        var popupContent = document.createElement('div');
-
-        // add marker name to the popup content
-        var markerName = document.createElement('h2');
-        markerName.textContent = markerData[i].name;
-        popupContent.appendChild(markerName);
-
-        // add additional information (if any) to the popup content
-        var additionalInfo = document.createElement('p');
-        additionalInfo.textContent = "Rooms: " + markerData[i].rooms;
-        popupContent.appendChild(additionalInfo);
-
-        // Add voting mechanism (form) to the popup content
-        var voteForm = document.createElement('form');
-        voteForm.innerHTML = `
-            <label for="vote">Vote:</label>
-            <select id="vote">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select>
-            <button type="submit">Submit Vote</button>
-        `;
-        popupContent.appendChild(voteForm);
-
-        // Add a button for routing
-        var routeButton = document.createElement('button');
-        routeButton.textContent = 'Route from Current Location';
-        routeButton.addEventListener('click', createRoute.bind(null, markerData[i]));
-        popupContent.appendChild(routeButton);
-
-        // Bind popup with customized content to the marker
-        marker.bindPopup(popupContent);
-        }
-    }
-
-redCheckbox.addEventListener('change', display_building_names);
-blueCheckbox.addEventListener('change', display_building_names);
-greenCheckbox.addEventListener('change', display_building_names);
-orangeCheckbox.addEventListener('change', display_building_names);
+// Function to create popup content with voting and additional information
+function createPopupContent(data) {
+    var div = document.createElement('div');
     
-// Function to create route from user's current location to the marker
-function createRoute(markerInfo) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        var userLatLng = L.latLng(position.coords.latitude, position.coords.longitude);
+    var title = document.createElement('h2');
+    title.textContent = data.name;
+    div.appendChild(title);
 
-        // Calculate route using Leaflet Routing Machine
+    if (data.rooms) {
+        var rooms = document.createElement('p');
+        rooms.textContent = "Rooms: " + data.rooms;
+        div.appendChild(rooms);
+    }
+
+    var voteForm = document.createElement('form');
+    voteForm.innerHTML = `
+        <label for="vote-${data.id}">Vote:</label>
+        <select id="vote-${data.id}">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+        <button type="submit">Submit Vote</button>
+    `;
+    div.appendChild(voteForm);
+
+    // Add a button for routing
+    var routeButton = document.createElement('button');
+    routeButton.textContent = 'Route from Current Location';
+    routeButton.onclick = function() {
+        routeToLocation(data.lat, data.lng);
+    };
+    div.appendChild(routeButton);
+
+    return div;
+}
+
+// Function to update markers based on checkbox states
+function updateMarkers() {
+    clearMarkers(); // Clears existing markers from all layers
+
+    markerData.forEach(data => {
+        if (!window[data.access + 'Checkbox'].checked) return;
+
+        var marker = L.marker([data.lat, data.lng], {icon: window['markerStyle' + capitalize(data.access)]});
+        var popupContent = createPopupContent(data); // Dynamically created popup content
+
+        marker.bindPopup(popupContent);
+        window[data.access + 'Markers'].addLayer(marker);
+    });
+}
+function routeToLocation(lat, lng) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var userLat = position.coords.latitude;
+        var userLng = position.coords.longitude;
+
         L.Routing.control({
             waypoints: [
-                userLatLng,
-                L.latLng(markerInfo.lat, markerInfo.lng)
-            ]
+                L.latLng(userLat, userLng),
+                L.latLng(lat, lng)
+            ],
+            routeWhileDragging: true
         }).addTo(map);
-    }, function (error) {
-        console.error('Error getting user location:', error);
+    }, function() {
+        alert('Failed to get your location for routing.');
     });
 }
 
-//TESTING
-// Function to retrieve the user's location
-function getLocation() {
-    // Check if geolocation is supported
-    if (navigator.geolocation) {
-        // Get the user's location
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-            
-            // Create a marker at the user's location
-            var userMarker = L.marker([latitude, longitude]).addTo(map);
-            
-            // Create a popup for the user's location marker
-            var popupContent = "You are here!<br>Latitude: " + latitude + "<br>Longitude: " + longitude;
-            userMarker.bindPopup(popupContent).openPopup();
-            
-            // Center the map on the user's location
-            map.setView([latitude, longitude], 16);
-        }, function(error) {
-            console.error('Error getting user location:', error);
-        });
-    } else {
-        // Geolocation is not supported by the browser
-        console.error('Geolocation is not supported by this browser.');
-    }
+
+// Helper functions
+function clearMarkers() {
+    redMarkers.clearLayers();
+    blueMarkers.clearLayers();
+    greenMarkers.clearLayers();
+    orangeMarkers.clearLayers();
 }
 
-
-var topRight = document.querySelector('.leaflet-top leaflet-right');
-
-if (topRight) {
-    // If topRight is a valid DOM node, append the element to it
-    topRight.appendChild(yourElementToAppend);
-} else {
-    console.error('Could not find the topRight element or it is not a valid DOM node.');
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-display_building_names();
+// Initialize and event listeners
+updateMarkers(); // Initial display of markers
+['red', 'blue', 'green', 'orange'].forEach(color => {
+    document.getElementById(color + '-checkbox').addEventListener('change', updateMarkers);
+});
+// // function to create markers and display on map
+// function display_building_names() {
+//     clearMarkers();
+
+//     if (map.hasLayer(redMarkers)){
+//         map.removeLayer(redMarkers);
+//     }
+//     if(map.hasLayer(blueMarkers)){
+//         map.removeLayer(blueMarkers);
+//     } 
+
+//     if(map.hasLayer(greenMarkers)){
+//         map.removeLayer(greenMarkers);
+//     } 
+//     if(map.hasLayer(orangeMarkers)){
+//         map.removeLayer(orangeMarkers);
+//     }
+
+//     // console.log(redCheckbox.checked);
+
+//     // create markers with names
+//     for (var i = 0; i < markerData.length; i++) {
+//         if (markerData[i].access == "red" && redCheckbox.checked) {
+//             var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleRed, 
+//                 id:markerData[i].id, name:markerData[i].name}).addTo(redMarkers);
+//             map.addLayer(redMarkers);
+//         }
+
+//         if(markerData[i].access == "blue" && blueCheckbox.checked){
+//             var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleBlue, 
+//                 id:markerData[i].id, name:markerData[i].name}).addTo(blueMarkers);
+//             map.addLayer(blueMarkers);
+//         }
+        
+//         if(markerData[i].access == "green" && greenCheckbox.checked){
+//             var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleGreen,
+//                 id:markerData[i].id, name:markerData[i].name}).addTo(greenMarkers);
+//             map.addLayer(greenMarkers);
+//         }
+        
+//         if(markerData[i].access == "orange" && orangeCheckbox.checked){
+//             var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleOrange,
+//                 id:markerData[i].id, name:markerData[i].name}).addTo(orangeMarkers);
+//             map.addLayer(orangeMarkers);
+//         }
+       
+//         var popupContent = document.createElement('div');
+
+//         // add marker name to the popup content
+//         var markerName = document.createElement('h2');
+//         markerName.textContent = markerData[i].name;
+//         popupContent.appendChild(markerName);
+
+//         // add additional information (if any) to the popup content
+//         var additionalInfo = document.createElement('p');
+//         additionalInfo.textContent = "Rooms: " + markerData[i].rooms;
+//         popupContent.appendChild(additionalInfo);
+
+//         // Add voting mechanism (form) to the popup content
+//         var voteForm = document.createElement('form');
+//         voteForm.innerHTML = `
+//             <label for="vote">Vote:</label>
+//             <select id="vote">
+//                 <option value="option1">Option 1</option>
+//                 <option value="option2">Option 2</option>
+//                 <option value="option3">Option 3</option>
+//             </select>
+//             <button type="submit">Submit Vote</button>
+//         `;
+//         popupContent.appendChild(voteForm);
+
+//         // Add a button for routing
+//         var routeButton = document.createElement('button');
+//         routeButton.textContent = 'Route from Current Location';
+//         routeButton.addEventListener('click', createRoute.bind(null, markerData[i]));
+//         popupContent.appendChild(routeButton);
+
+//         // Bind popup with customized content to the marker
+//         marker.bindPopup(popupContent);
+//         }
+//     }
+
+// redCheckbox.addEventListener('change', display_building_names);
+// blueCheckbox.addEventListener('change', display_building_names);
+// greenCheckbox.addEventListener('change', display_building_names);
+// orangeCheckbox.addEventListener('change', display_building_names);
+    
+// // Function to create route from user's current location to the marker
+// function createRoute(markerInfo) {
+//     navigator.geolocation.getCurrentPosition(function (position) {
+//         var userLatLng = L.latLng(position.coords.latitude, position.coords.longitude);
+
+//         // Calculate route using Leaflet Routing Machine
+//         L.Routing.control({
+//             waypoints: [
+//                 userLatLng,
+//                 L.latLng(markerInfo.lat, markerInfo.lng)
+//             ]
+//         }).addTo(map);
+//     }, function (error) {
+//         console.error('Error getting user location:', error);
+//     });
+// }
+
+// //TESTING
+// // Function to retrieve the user's location
+// function getLocation() {
+//     // Check if geolocation is supported
+//     if (navigator.geolocation) {
+//         // Get the user's location
+//         navigator.geolocation.getCurrentPosition(function(position) {
+//             var latitude = position.coords.latitude;
+//             var longitude = position.coords.longitude;
+            
+//             // Create a marker at the user's location
+//             var userMarker = L.marker([latitude, longitude]).addTo(map);
+            
+//             // Create a popup for the user's location marker
+//             var popupContent = "You are here!<br>Latitude: " + latitude + "<br>Longitude: " + longitude;
+//             userMarker.bindPopup(popupContent).openPopup();
+            
+//             // Center the map on the user's location
+//             map.setView([latitude, longitude], 16);
+//         }, function(error) {
+//             console.error('Error getting user location:', error);
+//         });
+//     } else {
+//         // Geolocation is not supported by the browser
+//         console.error('Geolocation is not supported by this browser.');
+//     }
+// }
+// display_building_names();
