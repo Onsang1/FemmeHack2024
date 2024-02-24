@@ -1,5 +1,5 @@
 //creating map and setting view
-var map = L.map('map').setView([39.951964, -75.200611], 16);
+var map = L.map('map').setView([39.952484, -75.19486], 16);
 
 //adding tile layer
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -89,7 +89,7 @@ var markerData = [
 ];
 
 // marker style
-var markerStyle = L.icon({
+var markerStyleRed = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [25, 41],
@@ -98,12 +98,50 @@ var markerStyle = L.icon({
     shadowSize: [41, 41]
 }); 
 
+var markerStyleBlue = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+var markerStyleGreen = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+var markerStyleOrange = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
 // function to create markers and display on map
 function display_building_names() {
     // create markers with names
     for (var i = 0; i < markerData.length; i++) {
-        var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyle, 
-            id:markerData[i].id, name:markerData[i].names}).addTo(map);
+        if (markerData[i].access == "red") {
+            var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleRed, 
+                id:markerData[i].id, name:markerData[i].names}).addTo(map);
+        }else if(markerData[i].access == "blue"){
+            var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleBlue, 
+                id:markerData[i].id, name:markerData[i].names}).addTo(map);
+        }else if(markerData[i].access == "green"){
+            var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleGreen,
+                id:markerData[i].id, name:markerData[i].names}).addTo(map);
+        }else if(markerData[i].access == "orange"){
+            var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleOrange,
+                id:markerData[i].id, name:markerData[i].names}).addTo(map);
+        }
        
         var popupContent = document.createElement('div');
 
