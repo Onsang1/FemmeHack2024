@@ -210,22 +210,104 @@ function updateMarkers() {
         window[data.access + 'Markers'].addLayer(marker);
     });
 }
+
+let routingControl; // Keep track of the routing control
+
 function routeToLocation(lat, lng) {
     navigator.geolocation.getCurrentPosition(function(position) {
         var userLat = position.coords.latitude;
         var userLng = position.coords.longitude;
 
-        L.Routing.control({
+        if (routingControl) {
+            map.removeControl(routingControl);
+        }
+
+        routingControl = L.Routing.control({
             waypoints: [
                 L.latLng(userLat, userLng),
                 L.latLng(lat, lng)
             ],
-            routeWhileDragging: true
+            routeWhileDragging: true,
+            createMarker: function() { return null; }, // Optional: Avoid default markers
+            
+            lineOptions: {
+                styles: [{color: '#6FA1EC', weight: 4}] // Customize route line style if desired
+            },
+            addWaypoints: false, // Disable dragging of waypoints
+            // Hide the default route summary that appears on the map
+            summaryTemplate: ''
+
+        }).on('routesfound', function(e) {
+            var routes = e.routes;
+            var summary = routes[0].summary;
+            displayRouteSummary(summary.totalDistance, summary.totalTime);
+
+            // Assume first route is the one you want to display
+            var routeInstructions = routes[0].instructions;
+            displayDirections(routeInstructions);
         }).addTo(map);
+
+        // Optionally, hide the routing container if it's still visible
+        document.querySelector('.leaflet-routing-container').style.display = 'none';
+
     }, function() {
         alert('Failed to get your location for routing.');
     });
 }
+
+
+
+
+// function displayRouteSummary(distance, time) {
+//     console.log("THE TIME IS "+ time);
+//     console.log("THE DISTANCE IS" + distance);
+//     var directionsContainer = document.getElementById('routing-directions');
+//     var summaryDiv = document.createElement('div');
+//     summaryDiv.innerHTML = `<strong>Total Distance:</strong> ${(distance / 1000).toFixed(2)} km<br>
+//                             <strong>Estimated Time:</strong> ${Math.floor(time / 60)} min`;
+//     directionsContainer.prepend(summaryDiv); // Add summary at the top of the sidebar section
+// }
+function displayRouteSummary(distance, time) {
+    var directionsContainer = document.getElementById('routing-directions');
+    console.log("distance and time are: " + distance + " " + time);
+    // Ensure the container is cleared before setting new content
+    directionsContainer.innerHTML = ''; 
+
+    // Create the summary content
+    // Create summary content
+    var summaryContent = `<div class="route-summary">
+                            <strong>Total Distance:</strong> ${(distance / 1000).toFixed(2)} km<br>
+                            <strong>Estimated Time:</strong> ${Math.round(distance / 1000 / 4.5 * 60)} min
+                        </div>`;
+
+    // Set the summary as the first item in the directions container
+    directionsContainer.innerHTML = summaryContent;
+
+    // Now, when you append instructions, they will follow the summary.
+}
+
+
+function displayDirections(instructions) {
+    var directionsContainer = document.getElementById('routing-directions');
+
+    // Create a new container for directions to avoid overwriting existing summary
+    var directionsListContainer = document.createElement('div');
+    directionsListContainer.className = 'directions-list-container'; // Optional: for styling purposes
+
+    var list = document.createElement('ol');
+    instructions.forEach(function(instruction) {
+        var item = document.createElement('li');
+        item.innerHTML = instruction.text + ' for ' + instruction.distance + ' meters';
+        list.appendChild(item);
+    });
+
+    directionsListContainer.appendChild(list);
+
+    // Append the new container with directions to the existing container
+    directionsContainer.appendChild(directionsListContainer);
+}
+
+
 
 
 // Helper functions
