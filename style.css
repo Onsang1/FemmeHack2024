@@ -11,7 +11,8 @@
 #sidebar {
   width: 250px; /* Adjust based on your preference */
   height: 100vh; /* Full height */
-  background-color: #f4f4f4; /* Light grey background */
+  /* background-color: #f4f4f4; Light grey background */
+  background-color: beige;
   padding: 20px; /* Some padding inside the sidebar */
   box-sizing: border-box; /* Makes sure padding doesn't add to the width */
 }
