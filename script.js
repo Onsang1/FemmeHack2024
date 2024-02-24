@@ -243,4 +243,33 @@ function createRoute(markerInfo) {
     });
 }
 
+<<<<<<< HEAD
+=======
+//TESTING
+// Function to retrieve the user's location
+function getLocation() {
+    // Check if geolocation is supported
+    if (navigator.geolocation) {
+        // Get the user's location
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            
+            // Create a marker at the user's location
+            var userMarker = L.marker([latitude, longitude]).addTo(map);
+            
+            // Create a popup for the user's location marker
+            var popupContent = "You are here!<br>Latitude: " + latitude + "<br>Longitude: " + longitude;
+            userMarker.bindPopup(popupContent).openPopup();
+            
+            // Center the map on the user's location
+            map.setView([latitude, longitude], 16);
+        }, function(error) {
+            console.error('Error getting user location:', error);
+        });
+    } else {
+        // Geolocation is not supported by the browser
+        console.error('Geolocation is not supported by this browser.');
+    }
+}
 display_building_names();
