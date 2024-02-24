@@ -34,7 +34,7 @@
   z-index: 1000 !important;
 }
 
-.leaflet-routing-container
+/* .leaflet-routing-container
   leaflet-bar
   leaflet-routing-collapsible
   leaflet-control {
@@ -42,4 +42,21 @@
   top: 200px !important;
   left: 200px !important;
   z-index: 1000 !important;
+} */
+
+/* Hide the default routing instructions panel
+.leaflet-routing-container {
+  display: none !important;
+} */
+
+
+
+#routing-directions {
+  overflow-y: auto; /* Allows scrolling if the content is too long */
+  height: 100%; /* Adjust based on your layout */
+  padding: 10px;
+}
+
+.routes-instructions {
+  font-size: 0.9em; /* Adjust font size as needed */
 }
