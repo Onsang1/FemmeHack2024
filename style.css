@@ -26,6 +26,13 @@
   flex-grow: 1; /* Takes up the remaining width */
   height: 100vh; /* Full height */
 }
+#sidebar h1 {
+  font-family: 'Cover By Your Grace', cursive;
+  /* Additional styling */
+  font-size: 24px; /* Example size, adjust as needed */
+  color: #333; /* Example color, adjust as needed */
+}
+
 
 .leaflet-top leaflet-right {
   position: absolute !important;
