@@ -1,3 +1,5 @@
+var markerRefs = {};
+
 //creating map and setting view
 var map = L.map('map').setView([39.952484, -75.19486], 16);
 
@@ -196,9 +198,10 @@ function createPopupContent(data) {
     return div;
 }
 
-// Function to update markers based on checkbox states
+// Modify the updateMarkers function to store marker references
 function updateMarkers() {
     clearMarkers(); // Clears existing markers from all layers
+    markerRefs = {}; // Reset references when updating markers
 
     markerData.forEach(data => {
         if (!window[data.access + 'Checkbox'].checked) return;
@@ -208,6 +211,9 @@ function updateMarkers() {
 
         marker.bindPopup(popupContent);
         window[data.access + 'Markers'].addLayer(marker);
+
+        // Store the reference to the marker with its id
+        markerRefs[data.id] = marker;
     });
 }
 
@@ -335,6 +341,8 @@ function routeToClosestMarker() {
         // Initialize variables to keep track of the closest marker and its distance
         var closestMarker = null;
         var closestDistance = Infinity;
+        var closestMarkerId = null; // Add a variable to store the id of the closest marker
+
 
         // Loop through all markers to find the closest one
         markerData.forEach(function (marker) {
@@ -345,25 +353,49 @@ function routeToClosestMarker() {
             if (distance < closestDistance) {
                 closestMarker = marker;
                 closestDistance = distance;
+                closestMarkerId = marker.id; // Store the id of the closest marker
+
             }
         });
 
-        // const closestMarkerObject = findMarkerById(closestMarker.id);
+        // Update the closest marker's icon if found
+        if (closestMarker && closestMarkerId in markerRefs) {
+            var leafletMarker = markerRefs[closestMarkerId];
+            leafletMarker.setIcon(markerStylePurple); // Update the icon to indicate it's the target
 
-        // If a closest marker is found, create a route to it
-        if (closestMarker) {
-            L.Routing.control({
-                waypoints: [
-                    userLatLng,
-                    L.latLng(closestMarker.lat, closestMarker.lng)
-                ]
+            // Proceed to create a route to the closest marker
+            if (routingControl) {
+                map.removeControl(routingControl);
+            }
+
+            routingControl = L.Routing.control({
+                waypoints: [userLatLng, L.latLng(closestMarker.lat, closestMarker.lng)],
+                routeWhileDragging: true,
+                createMarker: function() { return null; },
+                lineOptions: {styles: [{color: '#6FA1EC', weight: 4}]},
+                addWaypoints: false,
+                summaryTemplate: '',
+                show: false, // Do not show the routing control by default
+                fitSelectedRoutes: true // Optional, to fit the selected route in the map view
+            }).on('routesfound', function(e) {
+                var routes = e.routes;
+                var summary = routes[0].summary;
+                displayRouteSummary(summary.totalDistance, summary.totalTime);
+                var routeInstructions = routes[0].instructions;
+                displayDirections(routeInstructions);
+
+                // Attempt to find and hide the routing container
+                var routingContainers = document.querySelectorAll('.leaflet-routing-container');
+                routingContainers.forEach(function(container) {
+                    container.style.display = 'none';
+                });
+                
+                
             }).addTo(map);
-            // if(closestMarkerObject) {
-                // closestMarkerObject.setIcon(markerStylePurple).openPopup();
-            // }
         } else {
             console.error('No markers found.');
         }
+
     }, function (error) {
         console.error('Error getting user location:', error);
     });

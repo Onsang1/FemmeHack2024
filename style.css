@@ -44,10 +44,10 @@
   z-index: 1000 !important;
 } */
 
-/* Hide the default routing instructions panel
+/* Hide the default routing instructions panel */
 .leaflet-routing-container {
   display: none !important;
-} */
+}
 
 
 
