@@ -1,9 +1,35 @@
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+// import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
+
+// // Your web app's Firebase configuration
+// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//     apiKey: "AIzaSyDX4S8re3_7ECq_xydA_N-zAwZINaSjnN0",
+//     authDomain: "restzz.firebaseapp.com",
+//     projectId: "restzz",
+//     storageBucket: "restzz.appspot.com",
+//     messagingSenderId: "482947995597",
+//     appId: "1:482947995597:web:33ae6ea8261c4d2a511684",
+//     measurementId: "G-8SX4BE16YR"
+// };
+
+// // Initialize Firebase
+// // const app = initializeApp(firebaseConfig);
+// // const analytics = getAnalytics(app);
+
+// const db = firebase.firestore();
+
+var markerRefs = {};
+
 //creating map and setting view
 var map = L.map('map').setView([39.952484, -75.19486], 16);
 
 //adding tile layer
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+    maxZoom: 19,    
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
@@ -159,6 +185,7 @@ function clearMarkers() {
 }
 
 
+
 // Function to create popup content with voting and additional information
 function createPopupContent(data) {
     var div = document.createElement('div');
@@ -173,21 +200,44 @@ function createPopupContent(data) {
         div.appendChild(rooms);
     }
 
-    var voteForm = document.createElement('form');
-    voteForm.innerHTML = `
-        <label for="vote-${data.id}">Vote:</label>
-        <select id="vote-${data.id}">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-        </select>
-        <button type="submit">Submit Vote</button>
-    `;
-    div.appendChild(voteForm);
+    // Upvote Button
+    var upvoteButton = document.createElement('button');
+    upvoteButton.textContent = 'Upvote';
+    upvoteButton.onclick = function() {
+        upvoteMarker(data.id);
+    };
+    div.appendChild(upvoteButton);
 
-    // Add a button for routing
+    // Comment Section
+    var commentSection = document.createElement('div');
+    commentSection.style.display = 'flex';
+    commentSection.style.justifyContent = 'space-between';
+    commentSection.style.marginTop = '10px';
+
+    var commentInput = document.createElement('input');
+    commentInput.type = 'text';
+    commentInput.placeholder = 'Add a comment...';
+    commentInput.style.flex = '1';
+    commentInput.id = 'comment-' + data.id;
+
+    var submitCommentButton = document.createElement('button');
+    submitCommentButton.type = 'button'; // Prevent form submission
+    submitCommentButton.textContent = 'Submit Comment';
+    submitCommentButton.style.marginLeft = '10px';
+    submitCommentButton.onclick = function() {
+        var comment = commentInput.value;
+        submitComment(data.id, comment);
+        commentInput.value = ''; // Clear the input after submission
+    };
+
+    commentSection.appendChild(commentInput);
+    commentSection.appendChild(submitCommentButton);
+    div.appendChild(commentSection);
+
+    // Route Button
     var routeButton = document.createElement('button');
     routeButton.textContent = 'Route from Current Location';
+    routeButton.style.marginTop = '10px'; // Add some space above the route button
     routeButton.onclick = function() {
         routeToLocation(data.lat, data.lng);
     };
@@ -196,9 +246,51 @@ function createPopupContent(data) {
     return div;
 }
 
-// Function to update markers based on checkbox states
+// Function to handle submitting a comment
+function submitComment(markerId, comment) {
+    if (!comment.trim()) {
+        alert("Please enter a comment before submitting.");
+        return;
+    }
+
+    // Path to store comments might differ based on your data structure
+    const commentRef = db.collection('markers').doc(markerId).collection('comments').doc();
+    
+    commentRef.set({
+        comment: comment,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+        console.log("Comment added successfully!");
+    })
+    .catch((error) => {
+        console.error("Error adding comment: ", error);
+    });
+}
+
+// Function to handle upvoting a marker
+function upvoteMarker(markerId) {
+    const markerRef = db.collection('markers').doc(markerId);
+
+    db.runTransaction((transaction) => {
+        return transaction.get(markerRef).then((markerDoc) => {
+            if (!markerDoc.exists) {
+                throw "Document does not exist!";
+            }
+            var newVoteCount = (markerDoc.data().voteCount || 0) + 1;
+            transaction.update(markerRef, { voteCount: newVoteCount });
+        });
+    }).then(() => {
+        console.log("Transaction successfully committed for updating vote count!");
+    }).catch((error) => {
+        console.log("Transaction failed: ", error);
+    });
+}
+
+// Modify the updateMarkers function to store marker references
 function updateMarkers() {
     clearMarkers(); // Clears existing markers from all layers
+    markerRefs = {}; // Reset references when updating markers
 
     markerData.forEach(data => {
         if (!window[data.access + 'Checkbox'].checked) return;
@@ -208,6 +300,9 @@ function updateMarkers() {
 
         marker.bindPopup(popupContent);
         window[data.access + 'Markers'].addLayer(marker);
+
+        // Store the reference to the marker with its id
+        markerRefs[data.id] = marker;
     });
 }
 
@@ -335,6 +430,8 @@ function routeToClosestMarker() {
         // Initialize variables to keep track of the closest marker and its distance
         var closestMarker = null;
         var closestDistance = Infinity;
+        var closestMarkerId = null; // Add a variable to store the id of the closest marker
+
 
         // Loop through all markers to find the closest one
         markerData.forEach(function (marker) {
@@ -345,34 +442,50 @@ function routeToClosestMarker() {
             if (distance < closestDistance) {
                 closestMarker = marker;
                 closestDistance = distance;
+                closestMarkerId = marker.id; // Store the id of the closest marker
+
             }
         });
 
-        // const closestMarkerObject = findMarkerById(closestMarker.id);
+        // Update the closest marker's icon if found
+        if (closestMarker && closestMarkerId in markerRefs) {
+            var leafletMarker = markerRefs[closestMarkerId];
+            leafletMarker.setIcon(markerStylePurple); // Update the icon to indicate it's the target
 
-        // If a closest marker is found, create a route to it
-        if (closestMarker) {
-            L.Routing.control({
-                waypoints: [
-                    userLatLng,
-                    L.latLng(closestMarker.lat, closestMarker.lng)
-                ]
+            // Proceed to create a route to the closest marker
+            if (routingControl) {
+                map.removeControl(routingControl);
+            }
+
+            routingControl = L.Routing.control({
+                waypoints: [userLatLng, L.latLng(closestMarker.lat, closestMarker.lng)],
+                routeWhileDragging: true,
+                createMarker: function() { return null; },
+                lineOptions: {styles: [{color: '#6FA1EC', weight: 4}]},
+                addWaypoints: false,
+                summaryTemplate: '',
+                show: false, // Do not show the routing control by default
+                fitSelectedRoutes: true // Optional, to fit the selected route in the map view
+            }).on('routesfound', function(e) {
+                var routes = e.routes;
+                var summary = routes[0].summary;
+                displayRouteSummary(summary.totalDistance, summary.totalTime);
+                var routeInstructions = routes[0].instructions;
+                displayDirections(routeInstructions);
+
+                // Attempt to find and hide the routing container
+                var routingContainers = document.querySelectorAll('.leaflet-routing-container');
+                routingContainers.forEach(function(container) {
+                    container.style.display = 'none';
+                });
+                
+                
             }).addTo(map);
-            // if(closestMarkerObject) {
-                // closestMarkerObject.setIcon(markerStylePurple).openPopup();
-            // }
         } else {
             console.error('No markers found.');
         }
+
     }, function (error) {
         console.error('Error getting user location:', error);
     });
 }
-
-// const closestMarkerObject = findMarkerById()
-// const existingMarker = findMarkerById(markerId);
-// if (existingMarker) {
-//     existingMarker.setIcon(newMarkerStyle).openPopup();
-//     previousMarker = existingMarker;
-//     return;
-// }
