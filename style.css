@@ -17,12 +17,53 @@
   box-sizing: border-box; /* Makes sure padding doesn't add to the width */
 }
 .in-line {
-  display:inline-block;
-  margin-right:5px;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 /* Map styles */
 #map {
   flex-grow: 1; /* Takes up the remaining width */
   height: 100vh; /* Full height */
+}
+#sidebar h1 {
+  font-family: 'Cover By Your Grace', cursive;
+  /* Additional styling */
+  font-size: 24px; /* Example size, adjust as needed */
+  color: #333; /* Example color, adjust as needed */
+}
+
+
+.leaflet-top leaflet-right {
+  position: absolute !important;
+  top: 200px !important;
+  left: 200px !important;
+  z-index: 1000 !important;
+}
+
+/* .leaflet-routing-container
+  leaflet-bar
+  leaflet-routing-collapsible
+  leaflet-control {
+  position: absolute !important;
+  top: 200px !important;
+  left: 200px !important;
+  z-index: 1000 !important;
+} */
+
+/* Hide the default routing instructions panel */
+.leaflet-routing-container {
+  display: none !important;
+}
+
+
+
+#routing-directions {
+  overflow-y: auto; /* Allows scrolling if the content is too long */
+  height: 100%; /* Adjust based on your layout */
+  padding: 10px;
+}
+
+.routes-instructions {
+  font-size: 0.9em; /* Adjust font size as needed */
 }

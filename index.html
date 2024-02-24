@@ -15,6 +15,7 @@
      <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
      <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cover+By+Your+Grace&display=swap" rel="stylesheet">
     <title>Restz</title>
 </head>
 <body>
@@ -29,8 +30,8 @@
             <!-- search bar-->
             <!-- <label for="sbar">Input Location:</label> -->
             <input type="text" id="sname" name="sname" placeholder="Address of your starting location" size="30"><br><br>
-            <button class = "in-line">Get Directions</button>
-            <button class = "in-line" onclick="locateUserAndMarkBlue()">Get My Location</button>
+            <!-- <button class = "in-line">Get Directions</button> -->
+            <button class = "in-line" onclick="routeToClosestMarker()">Find the Closest Bathroom Near Me</button>
             <div id="demo"></div>
             <div>
                 <input type="checkbox" id="red-checkbox" checked> Red
@@ -38,10 +39,16 @@
                 <input type="checkbox" id="green-checkbox" checked> Green
                 <input type="checkbox" id="orange-checkbox" checked> Orange
             </div>
+            <div id="routing-directions"></div>
+
         </div>
         <div id="map">
+            <!-- Add Firebase SDKs - compat version -->
+            <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
             <script src="script.js"></script>
         </div>
+        
     </div>
 
 
