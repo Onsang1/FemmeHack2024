@@ -18,74 +18,74 @@ var current_location = L.control.locate({
 //adding markers
 var markerData = [
     {id: 'marker1', lat: 39.948932, lng: -75.197501, name: 'Anatomy-Chemistry Building', access:"red", rooms:"309C, 309J, 408A"},
-    {id: 'marker2', lat: 39.949674, lng: -75.196699, name: 'John Morgan Building', access:"red", rooms:""},
-    {id: 'marker3', lat: 39.905180, lng: -75.354183, name: 'Annenberg School', access:"red", rooms:"180A, 180B, 181A, 181B, 496A, 597A, 597B"},
-    {id: 'marker4', lat: 39.948681, lng: -75.19666, name: 'Stellar Chance', access:"red", rooms:"M3, M4, 384"},
-    {id: 'marker5', lat: 39.948413, lng: -75.197606, name: 'Blockley Hall', access:"red", 
+    {id: 'marker1', lat: 39.949674, lng: -75.196699, name: 'John Morgan Building', access:"red", rooms:""},
+    {id: 'marker1', lat: 39.905180, lng: -75.354183, name: 'Annenberg School', access:"red", rooms:"180A, 180B, 181A, 181B, 496A, 597A, 597B"},
+    {id: 'marker1', lat: 39.948681, lng: -75.19666, name: 'Stellar Chance', access:"red", rooms:"M3, M4, 384"},
+    {id: 'marker1', lat: 39.948413, lng: -75.197606, name: 'Blockley Hall', access:"red", 
     rooms:"301A, 305A, 307A, 309A, 311A, 315A, 317A, 319A, 409A, 412A, 424A, 502, 526, 616, 645, 716, 721, 806, 838, 906, 938, 1001B, 1005B, 1009B, 1013B, 1015B, 1017B, 1019B, 1101A, 1112A, 1201A, 1207A, 1312A, 1317A, 1407A, 1419"},
-    {id: 'marker6', lat: 39.949615, lng: -75.195837, name: 'Johnson Pavilion, Robert Wood', access:"red", rooms:"G135"},
-    {id: 'marker7', lat: 39.949201, lng: -75.19608, name: 'Fagin Hall', access:"blue", rooms:"M14, M15, 248, 318A, 429A, 2010"},
-    {id: 'marker8', lat: 39.949781, lng:  -75.197671, name: 'Richards Medical Research Labs', access:"red", rooms:"CB03, CB05"},
-    {id: 'marker9', lat: 39.949535, lng: -75.198823, name: 'Levin Building, Stephen A.', access:"blue", rooms:"L16A, L17A"},
-    {id: 'marker10', lat: 39.947941, lng: -75.192506, name: 'PCAM (Perelman Center for Advanced Medicine) ', access:"green", rooms:"OT1"},
-    {id: 'marker11', lat: 39.946926, lng: -75.192836, name: 'Smilow Center for Translational Research', access:"red", rooms:"TRC08-150A, TRC08-150B"},
-    {id: 'marker12', lat: 39.949856, lng: -75.191883, name: 'Penn Museum', access:"red", rooms:"188.V, 188.W, 188.X, 188.Y, 188.Z"},
-    {id: 'marker13', lat: 39.950929, lng: -75.198365, name: 'Stouffer Commons', access:"blue", rooms:"315, 316 "},
-    {id: 'marker14', lat: 39.950769, lng: -75.198968, name: 'Platt Performing Arts', access:"green", rooms:"166 "},
-    {id: 'marker15', lat: 39.95119, lng: -75.200272, name: 'Stiteler Hall', access:"blue", rooms:"B6D"},
-    {id: 'marker16', lat: 39.95082, lng: -75.20112, name: 'Ryan Veterinary Hospital ', access:"blue", rooms:"1211"},
-    {id: 'marker17', lat: 39.950707, lng: -75.188764, name: 'Hutchinson Gym ', access:"red", rooms:""},
-    {id: 'marker18', lat: 39.952392, lng: -75.187055, name: 'Walnut Street, 3101', access:"blue", rooms:"A42H, A42J"},
-    {id: 'marker19', lat: 39.950857, lng: -75.190062, name: 'Franklin Field (Weiss) ', access:"blue", rooms:"111, 207"},
-    {id: 'marker20', lat: 39.950439, lng: -75.19102, name: 'Weightman Hall', access:"blue", rooms:"112, 27"},
-    {id: 'marker21', lat: 39.950831, lng: -75.19062, name: 'Dunning Coaches’ Center ', access:"blue", rooms:"105, 106 "},
-    {id: 'marker22', lat: 39.952199, lng: -75.189574, name: 'David Rittenhouse Laboratory (DLR)', access:"blue", rooms:"4N47"},
-    {id: 'marker23', lat: 39.952432, lng: -75.190373, name: 'Moore School Building', access:"blue", rooms:"286"},
-    {id: 'marker24', lat: 39.951939, lng: -75.190548, name: 'Skirkanich Hall', access:"blue", rooms:"201S, 202S, 501S, 502, 3015, 3025, 4015, 4025"},
-    {id: 'marker25', lat: 39.95176, lng: -75.19103, name: 'Towne Building', access:"blue", rooms:"315, 316 "},
-    {id: 'marker26', lat: 39.952137, lng: -75.191153, name: 'Levine Hall', access:"blue", rooms:"L103"},
-    {id: 'marker27', lat: 39.951307, lng: -75.191298, name: 'Hayden Hall', access:"blue", rooms:"103"},
-    {id: 'marker28', lat: 39.950792, lng: -75.192026, name: 'Chemistry Labs 1958 Wing ', access:"blue", rooms:"157"},
-    {id: 'marker29', lat: 39.951607 , lng: -75.192716, name: 'Duhring Wing', access:"blue", rooms:"103, 105, 203, 303/403, 305/405, 503, 505"},
-    {id: 'marker30', lat: 39.951338, lng: -75.193797, name: 'College Hall', access:"blue", rooms:"107A, 107B, 220"},
-    {id: 'marker31', lat: 39.951203, lng: -75.194798, name: 'Cohen Hall', access:"blue", rooms:"G13, G60"},
-    {id: 'marker32', lat: 39.95273, lng: -75.192952, name: 'Jaffe History of Art', access:"blue", rooms:"Jaffe History of Art"},
-    {id: 'marker33', lat: 39.952672, lng: -75.194035, name: 'Dietrich Graduate Library ', access:"blue", 
+    {id: 'marker1', lat: 39.949615, lng: -75.195837, name: 'Johnson Pavilion, Robert Wood', access:"red", rooms:"G135"},
+    {id: 'marker1', lat: 39.949201, lng: -75.19608, name: 'Fagin Hall', access:"blue", rooms:"M14, M15, 248, 318A, 429A, 2010"},
+    {id: 'marker1', lat: 39.949781, lng:  -75.197671, name: 'Richards Medical Research Labs', access:"red", rooms:"CB03, CB05"},
+    {id: 'marker1', lat: 39.949535, lng: -75.198823, name: 'Levin Building, Stephen A.', access:"blue", rooms:"L16A, L17A"},
+    {id: 'marker1', lat: 39.947941, lng: -75.192506, name: 'PCAM (Perelman Center for Advanced Medicine) ', access:"green", rooms:"OT1"},
+    {id: 'marker1', lat: 39.946926, lng: -75.192836, name: 'Smilow Center for Translational Research', access:"red", rooms:"TRC08-150A, TRC08-150B"},
+    {id: 'marker1', lat: 39.949856, lng: -75.191883, name: 'Penn Museum', access:"red", rooms:"188.V, 188.W, 188.X, 188.Y, 188.Z"},
+    {id: 'marker1', lat: 39.950929, lng: -75.198365, name: 'Stouffer Commons', access:"blue", rooms:"315, 316 "},
+    {id: 'marker1', lat: 39.950769, lng: -75.198968, name: 'Platt Performing Arts', access:"green", rooms:"166 "},
+    {id: 'marker1', lat: 39.95119, lng: -75.200272, name: 'Stiteler Hall', access:"blue", rooms:"B6D"},
+    {id: 'marker1', lat: 39.95082, lng: -75.20112, name: 'Ryan Veterinary Hospital ', access:"blue", rooms:"1211"},
+    {id: 'marker1', lat: 39.950707, lng: -75.188764, name: 'Hutchinson Gym ', access:"red", rooms:""},
+    {id: 'marker1', lat: 39.952392, lng: -75.187055, name: 'Walnut Street, 3101', access:"blue", rooms:"A42H, A42J"},
+    {id: 'marker1', lat: 39.950857, lng: -75.190062, name: 'Franklin Field (Weiss) ', access:"blue", rooms:"111, 207"},
+    {id: 'marker1', lat: 39.950439, lng: -75.19102, name: 'Weightman Hall', access:"blue", rooms:"112, 27"},
+    {id: 'marker1', lat: 39.950831, lng: -75.19062, name: 'Dunning Coaches’ Center ', access:"blue", rooms:"105, 106 "},
+    {id: 'marker1', lat: 39.952199, lng: -75.189574, name: 'David Rittenhouse Laboratory (DLR)', access:"blue", rooms:"4N47"},
+    {id: 'marker1', lat: 39.952432, lng: -75.190373, name: 'Moore School Building', access:"blue", rooms:"286"},
+    {id: 'marker1', lat: 39.951939, lng: -75.190548, name: 'Skirkanich Hall', access:"blue", rooms:"201S, 202S, 501S, 502, 3015, 3025, 4015, 4025"},
+    {id: 'marker1', lat: 39.95176, lng: -75.19103, name: 'Towne Building', access:"blue", rooms:"315, 316 "},
+    {id: 'marker1', lat: 39.952137, lng: -75.191153, name: 'Levine Hall', access:"blue", rooms:"L103"},
+    {id: 'marker1', lat: 39.951307, lng: -75.191298, name: 'Hayden Hall', access:"blue", rooms:"103"},
+    {id: 'marker1', lat: 39.950792, lng: -75.192026, name: 'Chemistry Labs 1958 Wing ', access:"blue", rooms:"157"},
+    {id: 'marker1', lat: 39.951607 , lng: -75.192716, name: 'Duhring Wing', access:"blue", rooms:"103, 105, 203, 303/403, 305/405, 503, 505"},
+    {id: 'marker1', lat: 39.951338, lng: -75.193797, name: 'College Hall', access:"blue", rooms:"107A, 107B, 220"},
+    {id: 'marker1', lat: 39.951203, lng: -75.194798, name: 'Cohen Hall', access:"blue", rooms:"G13, G60"},
+    {id: 'marker1', lat: 39.95273, lng: -75.192952, name: 'Jaffe History of Art', access:"blue", rooms:"Jaffe History of Art"},
+    {id: 'marker1', lat: 39.952672, lng: -75.194035, name: 'Dietrich Graduate Library ', access:"blue", 
     rooms:"2nd Floor Lippincott Library [no room number], 312A & B, 313A & B, 316A & B, 317A & B, 412, 413, 415, 416, 510A & B, 511A & B"},
-    {id: 'marker34', lat: 39.952079, lng: -75.194627, name: 'Robbins House', access:"blue", rooms:"204, 304 "},
-    {id: 'marker35', lat: 39.952882, lng: -75.195174, name: 'Addams Hall', access:"blue", rooms:"312, 313"},
-    {id: 'marker36', lat: 39.952169, lng: -75.195191, name: 'Locust Walk,3609', access:"green", rooms:"107, 209, 306"},
-    {id: 'marker37', lat: 39.952338, lng: -75.196444, name: 'Colonial Penn Center', access:"green", rooms:"G9, G11, 316, 416"},
-    {id: 'marker38', lat: 39.952506, lng: -75.196801, name: 'Locust House', access:"green", rooms:"110, 204"},
-    {id: 'marker39', lat: 39.952893, lng: -75.197086, name: 'Stiteler Hall', access:"green", rooms:"B6D"},
-    {id: 'marker40', lat: 39.9518, lng: -75.197274, name: 'Lauder Institute', access:"red", rooms:"411, 412"},
-    {id: 'marker41', lat: 39.952438, lng: -75.19529, name: 'ARCH', access:"blue", rooms:"G06"},
-    {id: 'marker42', lat: 39.953228, lng: -75.19711, name: 'Grad Education Building', access:"blue", rooms:"110, 213, 321, 422"},
-    {id: 'marker43', lat: 39.952491, lng: -75.197556, name: 'Caster Building', access:"blue", rooms:"B16"},
-    {id: 'marker44', lat: 39.951854, lng: -75.197961, name: 'McNeil Building', access:"blue", rooms:"155A"},
-    {id: 'marker45', lat: 39.951391, lng: -75.196984, name: 'Academic Research Building', access:"blue", rooms:"116, 216"},
-    {id: 'marker46', lat: 39.952841, lng: -75.199295, name: 'Perry World House', access:"blue", rooms:"207, 307"},
-    {id: 'marker47', lat: 39.952801, lng: -75.199758, name: 'Kelly Writers House', access:"green", rooms:"201, 207"},
-    {id: 'marker48', lat: 39.953533, lng: -75.202332, name: 'New College House (Public)', access:"green", rooms:"103, 104, 105"},
-    {id: 'marker49', lat: 39.953729, lng: -75.202296, name: 'New College House (Residential)', access:"orange", rooms:"111A–111G, 207A, 207B"},
-    {id: 'marker50', lat: 39.952177, lng: -75.202122, name: 'LGBTC', access:"green", rooms:"103, 104, 212, 213"},
-    {id: 'marker51', lat: 39.951628, lng: -75.200511, name: 'Mayer', access:"orange", rooms:"119A "},
-    {id: 'marker52', lat: 39.952066, lng: -75.201106, name: 'Harrison', access:"orange", rooms:"105"},
-    {id: 'marker53', lat: 39.951855, lng: -75.202111, name: 'Van Pelt', access:"orange", rooms:"113"},
-    {id: 'marker54', lat: 39.952407, lng: -75.202399, name: 'Class of 1925 (Gregory)', access:"orange", rooms:"20, 124"},
-    {id: 'marker55', lat: 39.953059 , lng: -75.20137, name: 'Rodin', access:"orange", rooms:"100"},
-    {id: 'marker56', lat: 39.954366, lng: -75.202186, name: 'Hummus Grill', access:"blue", rooms:""},  
-    {id: 'marker57', lat: 39.954149, lng: -75.201127, name: 'The Radian', access:"orange", rooms:""},
-    {id: 'marker58', lat: 39.954004, lng: -75.199415, name: 'Sigma Alpha Mu', access:"blue", rooms:""},
-    {id: 'marker59', lat: 39.953719, lng: -75.19699, name: 'Pottruck', access:"red", rooms:"LL15, LL20"},
-    {id: 'marker60', lat: 39.954089, lng: -75.195269, name: 'Sansom Place East', access:"orange", rooms:"B8"},
-    {id: 'marker61', lat: 39.954059, lng: -75.194827, name: 'Institute of Contemporary Art ', access:"green", rooms:"102, 310A"},
-    {id: 'marker62', lat: 39.95402, lng: -75.190875, name: 'Lauder College House', access:"orange", rooms:"113"},
-    {id: 'marker63', lat: 39.953041, lng: -75.190949, name: 'Hill House', access:"orange", rooms:"A111, A112, A113, A114, A235, A330, A340 "},
-    {id: 'marker64', lat: 39.953875, lng: -75.192352, name: 'Silverman Hall', access:"blue", rooms:"G95D, 254 "},
-    {id: 'marker65', lat: 39.953942, lng: -75.193273, name: 'Golkin Hall', access:"blue", rooms:"246A, 246B"},
-    {id: 'marker66', lat: 39.954086, lng: -75.193733, name: 'Tanenbaum Hall', access:"blue", rooms:"T158, T326"},
-    {id: 'marker67', lat: 39.953507, lng: -75.194522, name: 'Perelman Center for Political Science and Economics', access:"blue", rooms:"4A, 84B, 312 A/B, 313 A/B"},
+    {id: 'marker1', lat: 39.952079, lng: -75.194627, name: 'Robbins House', access:"blue", rooms:"204, 304 "},
+    {id: 'marker1', lat: 39.952882, lng: -75.195174, name: 'Addams Hall', access:"blue", rooms:"312, 313"},
+    {id: 'marker1', lat: 39.952169, lng: -75.195191, name: 'Locust Walk,3609', access:"green", rooms:"107, 209, 306"},
+    {id: 'marker1', lat: 39.952338, lng: -75.196444, name: 'Colonial Penn Center', access:"green", rooms:"G9, G11, 316, 416"},
+    {id: 'marker1', lat: 39.952506, lng: -75.196801, name: 'Locust House', access:"green", rooms:"110, 204"},
+    {id: 'marker1', lat: 39.952893, lng: -75.197086, name: 'Stiteler Hall', access:"green", rooms:"B6D"},
+    {id: 'marker1', lat: 39.9518, lng: -75.197274, name: 'Lauder Institute', access:"red", rooms:"411, 412"},
+    {id: 'marker1', lat: 39.952438, lng: -75.19529, name: 'ARCH', access:"blue", rooms:"G06"},
+    {id: 'marker1', lat: 39.953228, lng: -75.19711, name: 'Grad Education Building', access:"blue", rooms:"110, 213, 321, 422"},
+    {id: 'marker1', lat: 39.952491, lng: -75.197556, name: 'Caster Building', access:"blue", rooms:"B16"},
+    {id: 'marker1', lat: 39.951854, lng: -75.197961, name: 'McNeil Building', access:"blue", rooms:"155A"},
+    {id: 'marker1', lat: 39.951391, lng: -75.196984, name: 'Academic Research Building', access:"blue", rooms:"116, 216"},
+    {id: 'marker1', lat: 39.952841, lng: -75.199295, name: 'Perry World House', access:"blue", rooms:"207, 307"},
+    {id: 'marker1', lat: 39.952801, lng: -75.199758, name: 'Kelly Writers House', access:"green", rooms:"201, 207"},
+    {id: 'marker1', lat: 39.953533, lng: -75.202332, name: 'New College House (Public)', access:"green", rooms:"103, 104, 105"},
+    {id: 'marker1', lat: 39.953729, lng: -75.202296, name: 'New College House (Residential)', access:"orange", rooms:"111A–111G, 207A, 207B"},
+    {id: 'marker1', lat: 39.952177, lng: -75.202122, name: 'LGBTC', access:"green", rooms:"103, 104, 212, 213"},
+    {id: 'marker1', lat: 39.951628, lng: -75.200511, name: 'Mayer', access:"orange", rooms:"119A "},
+    {id: 'marker1', lat: 39.952066, lng: -75.201106, name: 'Harrison', access:"orange", rooms:"105"},
+    {id: 'marker1', lat: 39.951855, lng: -75.202111, name: 'Van Pelt', access:"orange", rooms:"113"},
+    {id: 'marker1', lat: 39.952407, lng: -75.202399, name: 'Class of 1925 (Gregory)', access:"orange", rooms:"20, 124"},
+    {id: 'marker1', lat: 39.953059 , lng: -75.20137, name: 'Rodin', access:"orange", rooms:"100"},
+    {id: 'marker1', lat: 39.954366, lng: -75.202186, name: 'Hummus Grill', access:"blue", rooms:""},  
+    {id: 'marker1', lat: 39.954149, lng: -75.201127, name: 'The Radian', access:"orange", rooms:""},
+    {id: 'marker1', lat: 39.954004, lng: -75.199415, name: 'Sigma Alpha Mu', access:"blue", rooms:""},
+    {id: 'marker1', lat: 39.953719, lng: -75.19699, name: 'Pottruck', access:"red", rooms:"LL15, LL20"},
+    {id: 'marker1', lat: 39.954089, lng: -75.195269, name: 'Sansom Place East', access:"orange", rooms:"B8"},
+    {id: 'marker1', lat: 39.954059, lng: -75.194827, name: 'Institute of Contemporary Art ', access:"green", rooms:"102, 310A"},
+    {id: 'marker1', lat: 39.95402, lng: -75.190875, name: 'Lauder College House', access:"orange", rooms:"113"},
+    {id: 'marker1', lat: 39.953041, lng: -75.190949, name: 'Hill House', access:"orange", rooms:"A111, A112, A113, A114, A235, A330, A340 "},
+    {id: 'marker1', lat: 39.953875, lng: -75.192352, name: 'Silverman Hall', access:"blue", rooms:"G95D, 254 "},
+    {id: 'marker1', lat: 39.953942, lng: -75.193273, name: 'Golkin Hall', access:"blue", rooms:"246A, 246B"},
+    {id: 'marker1', lat: 39.954086, lng: -75.193733, name: 'Tanenbaum Hall', access:"blue", rooms:"T158, T326"},
+    {id: 'marker1', lat: 39.953507, lng: -75.194522, name: 'Perelman Center for Political Science and Economics', access:"blue", rooms:"4A, 84B, 312 A/B, 313 A/B"},
 ];
 
 // marker styles
@@ -130,49 +130,59 @@ var markerStyleOrange = L.icon({
     shadowSize: [41, 41]
 });
 
-function filterMarkers() {
-    var redCheckbox = document.getElementById('red-checkbox');
-    var blueCheckbox = document.getElementById('blue-checkbox');
-    var greenCheckbox = document.getElementById('green-checkbox');
-    var orangeCheckbox = document.getElementById('orange-checkbox');
+var redCheckbox = document.getElementById('red-checkbox');
+var blueCheckbox = document.getElementById('blue-checkbox');
+var greenCheckbox = document.getElementById('green-checkbox');
+var orangeCheckbox = document.getElementById('orange-checkbox');
 
-    for (var i = 0; i < markerData.length; i++) {
-        var marker = markers[markerData[i].id];
-        var access = markerData[i].access;
-
-        if ((access === "red" && redCheckbox.checked) ||
-            (access === "blue" && blueCheckbox.checked) ||
-            (access === "green" && greenCheckbox.checked) ||
-            (access === "orange" && orangeCheckbox.checked)) {
-            marker.addTo(map);
-        } else {
-            map.removeLayer(marker);
-        }
-    }
-}
-
-document.getElementById('red-checkbox').addEventListener('change', filterMarkers);
-document.getElementById('blue-checkbox').addEventListener('change', filterMarkers);
-document.getElementById('green-checkbox').addEventListener('change', filterMarkers);
-document.getElementById('orange-checkbox').addEventListener('change', filterMarkers);
-
+var redMarkers = L.layerGroup();
+var blueMarkers = L.layerGroup();
+var greenMarkers = L.layerGroup();
+var orangeMarkers = L.layerGroup();
 
 // function to create markers and display on map
 function display_building_names() {
+
+    if (map.hasLayer(redMarkers)){
+        map.removeLayer(redMarkers);
+    }
+    if(map.hasLayer(blueMarkers)){
+        map.removeLayer(blueMarkers);
+    } 
+
+    if(map.hasLayer(greenMarkers)){
+        map.removeLayer(greenMarkers);
+    } 
+    if(map.hasLayer(orangeMarkers)){
+        map.removeLayer(orangeMarkers);
+    }
+
+    console.log(redCheckbox.checked);
+
     // create markers with names
     for (var i = 0; i < markerData.length; i++) {
-        if (markerData[i].access == "red") {
+        if (markerData[i].access == "red" && redCheckbox.checked) {
             var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleRed, 
-                id:markerData[i].id, name:markerData[i].names}).addTo(map);
-        }else if(markerData[i].access == "blue"){
+                id:markerData[i].id, name:markerData[i].name}).addTo(redMarkers);
+            map.addLayer(redMarkers);
+        }
+
+        if(markerData[i].access == "blue" && blueCheckbox.checked){
             var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleBlue, 
-                id:markerData[i].id, name:markerData[i].names}).addTo(map);
-        }else if(markerData[i].access == "green"){
+                id:markerData[i].id, name:markerData[i].name}).addTo(blueMarkers);
+            map.addLayer(blueMarkers);
+        }
+        
+        if(markerData[i].access == "green" && greenCheckbox.checked){
             var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleGreen,
-                id:markerData[i].id, name:markerData[i].names}).addTo(map);
-        }else if(markerData[i].access == "orange"){
+                id:markerData[i].id, name:markerData[i].name}).addTo(greenMarkers);
+            map.addLayer(greenMarkers);
+        }
+        
+        if(markerData[i].access == "orange" && orangeCheckbox.checked){
             var marker = L.marker([markerData[i].lat, markerData[i].lng], {icon: markerStyleOrange,
-                id:markerData[i].id, name:markerData[i].names}).addTo(map);
+                id:markerData[i].id, name:markerData[i].name}).addTo(orangeMarkers);
+            map.addLayer(orangeMarkers);
         }
        
         var popupContent = document.createElement('div');
@@ -208,11 +218,14 @@ function display_building_names() {
 
         // Bind popup with customized content to the marker
         marker.bindPopup(popupContent);
-        markers[markerData[i].id] = marker;
+        }
     }
-    filterMarkers();
-}
 
+redCheckbox.addEventListener('change', display_building_names);
+blueCheckbox.addEventListener('change', display_building_names);
+greenCheckbox.addEventListener('change', display_building_names);
+orangeCheckbox.addEventListener('change', display_building_names);
+    
 // Function to create route from user's current location to the marker
 function createRoute(markerInfo) {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -229,7 +242,6 @@ function createRoute(markerInfo) {
         console.error('Error getting user location:', error);
     });
 }
-
 //TESTING
 function locateUserAndMarkBlue() {
     navigator.geolocation.getCurrentPosition(function (position) {
