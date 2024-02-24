@@ -3,29 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MainPage.css">
     <title>Restz</title>
  </head>   
 <body>
     <!-- navigation bar -->
      <div class="topnav">
-        <a class="active" href="#home">Restz</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <div id="logo">
+            <img width = "300px" height = "100px"src ="https://i.postimg.cc/P5fZYv4b/logo.png">
+        </div>
+        <!-- <a class="active" href="#home">Restz</a> -->
+        <a href="./index.html">Map</a>
         <a href="#about">About</a>
-        <img src ="https://i.postimg.cc/GtsX7xMs/Screenshot-2024-02-24-at-12-56-00-PM.png">
+        <a href="#mission">Mission</a>
+        <a href="#videotutorial">Video Tutorial</a>
+
     </div>
-    <div id="About">
+    <div class="map-container">
+        <div class="map">
+            <img src="https://i.postimg.cc/DwzZzR32/mapIMG.png">   
+        </div>
+        <div href = "./index.html" class="goToMapBtn">
+            <button onclick="window.location.href='index.html';">Go to Map</button>
+        </div>
+    </div>
+    <div id="#about" class = "section-wrapper">
         <h2>About</h2>
-    <div id="About Section"> 
+        <div id="AboutSection"> 
         <p>      Welcome to Restz, a platform dedicated to promoting inclusivity and accessibility for
                  all students in Pennsylvania. Our mission is to provide a solution to a common challenge faced by members 
                 of the queer community 
                  on college campuses: finding gender-neutral bathrooms.
         </p>
+        <p>
         At Restz, we believe that every student deserves access to safe and inclusive restroom facilities. Our web app is 
         designed to empower students by providing them with easily accessible information about available gender-neutral bathrooms 
         around their schools. We understand the importance of creating a supportive environment where everyone feels comfortable and respected.
-        <p> 
+    </p> 
             <p>         In addition to providing information about existing gender-neutral bathrooms, our app also aims to amplify the voices of students. 
                 We want to hear from you about where new gender-neutral bathrooms are urgently needed. Through our app, you can vote and share your opinions
                  about adding new facilities to buildings that you believe are in urgent need.
@@ -37,8 +51,9 @@
             </p>
 
         </p>
+        </div>
     </div>
-    <div id="Mission Statement">
+    <div id="#mission" class = "section-wrapper">
         <h2>Mission</h2>
         <div id="Statement">
             <p>At our website, we are committed to fostering inclusivity and accessibility for all members of 
@@ -48,13 +63,14 @@
                 and supported in their daily activities. Through our efforts, we strive to contribute to a campus culture that prioritizes diversity, 
                 equity, and belonging for all. </p>
            
+        </div>
     </div>
-    <div id="Video Tutorial">
+    <div id="#videotutorial" class = "section-wrapper">
         <h2> Video Tutorial</h2>
     </div>
-    <div>
-        
-    </div>
+    <footer class="site-footer">
+        <p>© 2024 Company Name. All rights reserved.</p>
+    </footer>
 </body>
 
 

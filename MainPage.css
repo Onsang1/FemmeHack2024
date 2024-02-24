@@ -1,0 +1,128 @@
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #9d82d4;
+    overflow: hidden;
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Vertically center items */
+}
+
+/* Style the logo image */
+#logo {
+    margin-right: auto; /* Pushes the logo to the left */
+    margin-left: 10px; /* Add space between logo and links */
+}
+
+#logo img {
+    width: 200px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #9d82d4;
+    color: white;
+}
+
+.map {
+    background-color: white;
+    position: relative;
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    height: 100vh; /* Set container height to full viewport height */
+}
+
+.map img {
+    max-width: 50%; /* Set maximum width to 100% of the container */
+    height: auto; /* Allow the image to adjust its height proportionally */
+}
+/* New container for map and button */
+.map-container {
+    text-align: center; /* Center children */
+    position: relative; /* Context for absolute positioning */
+}
+
+/* Updated goToMapBtn positioning */
+.goToMapBtn {
+    position: absolute;
+    left: 50%; /* Center the button horizontally */
+    transform: translateX(-50%); /* Adjust for the button's width */
+    bottom: 20px; /* Adjust this value based on your button's size */
+    margin-bottom: 5px;
+
+}
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+    background-color: inherit;
+    color: white;
+    padding: 14px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.section-wrapper h2, .section-wrapper p {
+    margin-left: 200px; /* Adjust the value as needed */
+    margin-right: 200px; /* Adjust the value as needed */
+}
+
+.goToMapBtn button {
+    background-color: #9d82d4; /* Purple background */
+    color: white; /* White text color */
+    border: none; /* Remove the default border */
+    padding: 10px 20px; /* Add some padding */
+    font-size: 16px; /* Increase font size */
+    cursor: pointer; /* Change mouse cursor on hover */
+    border-radius: 5px; /* Round the corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
+    transition: all 0.3s; /* Smooth transition for hover effects */
+}
+
+.goToMapBtn button:hover {
+    background-color: #8b6bb3; /* Darker shade for hover state */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+.site-footer {
+    background-image: url('path/to/your-footer-background.jpg'); /* Path to your image */
+    background-size: cover; /* Ensure the image covers the entire footer */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 150px; /* Set the height of the footer */
+    width: 100%; /* Ensure the footer spans the width of the page */
+    color: white; /* Set the text color for visibility */
+    text-align: center; /* Center the text/content within the footer */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    padding: 20px; /* Add some padding around the content */
+}
