@@ -1,3 +1,23 @@
-#map {
+/* #map {
   height: 700px;
+} */
+
+/* Container holding the map and the sidebar */
+.content {
+  display: flex;
+}
+
+/* Sidebar styles */
+#sidebar {
+  width: 250px; /* Adjust based on your preference */
+  height: 100vh; /* Full height */
+  background-color: #f4f4f4; /* Light grey background */
+  padding: 20px; /* Some padding inside the sidebar */
+  box-sizing: border-box; /* Makes sure padding doesn't add to the width */
+}
+
+/* Map styles */
+#map {
+  flex-grow: 1; /* Takes up the remaining width */
+  height: 100vh; /* Full height */
 }
