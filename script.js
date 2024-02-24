@@ -120,7 +120,7 @@ var markerStyleGreen = L.icon({
     shadowSize: [41, 41]
 });
 
-//orange triangle - 
+//orange triangle - residential access
 var markerStyleOrange = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -129,6 +129,16 @@ var markerStyleOrange = L.icon({
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
 });
+
+//purple - to closest restroom
+var markerStylePurple = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-purple.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+}); 
 
 var redCheckbox = document.getElementById('red-checkbox');
 var blueCheckbox = document.getElementById('blue-checkbox');
@@ -256,6 +266,8 @@ function routeToClosestMarker() {
             }
         });
 
+        const closestMarkerObject = findMarkerById(closestMarker.id);
+
         // If a closest marker is found, create a route to it
         if (closestMarker) {
             L.Routing.control({
@@ -264,6 +276,9 @@ function routeToClosestMarker() {
                     L.latLng(closestMarker.lat, closestMarker.lng)
                 ]
             }).addTo(map);
+            // if(closestMarkerObject) {
+                // closestMarkerObject.setIcon(markerStylePurple).openPopup();
+            // }
         } else {
             console.error('No markers found.');
         }
@@ -271,3 +286,11 @@ function routeToClosestMarker() {
         console.error('Error getting user location:', error);
     });
 }
+
+// const closestMarkerObject = findMarkerById()
+// const existingMarker = findMarkerById(markerId);
+// if (existingMarker) {
+//     existingMarker.setIcon(newMarkerStyle).openPopup();
+//     previousMarker = existingMarker;
+//     return;
+// }
