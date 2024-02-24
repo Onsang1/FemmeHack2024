@@ -157,7 +157,7 @@ function display_building_names() {
         map.removeLayer(orangeMarkers);
     }
 
-    console.log(redCheckbox.checked);
+    // console.log(redCheckbox.checked);
 
     // create markers with names
     for (var i = 0; i < markerData.length; i++) {
@@ -242,20 +242,32 @@ function createRoute(markerInfo) {
         console.error('Error getting user location:', error);
     });
 }
-//TESTING
-function locateUserAndMarkBlue() {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        var userLatLng = L.latLng(position.coords.latitude, position.coords.longitude);
 
-        // Create blue circle (dot) at user's location
-        L.circle(userLatLng, {
-            color: 'blue',
-            fillColor: 'blue',
-            fillOpacity: 0.5,
-            radius: 5 // Adjust the radius as needed to control the size of the dot
-        }).addTo(map).bindPopup("Your Location").openPopup();
-    }, function (error) {
-        console.error('Error getting user location:', error);
-    });
+//TESTING
+// Function to retrieve the user's location
+function getLocation() {
+    // Check if geolocation is supported
+    if (navigator.geolocation) {
+        // Get the user's location
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            
+            // Create a marker at the user's location
+            var userMarker = L.marker([latitude, longitude]).addTo(map);
+            
+            // Create a popup for the user's location marker
+            var popupContent = "You are here!<br>Latitude: " + latitude + "<br>Longitude: " + longitude;
+            userMarker.bindPopup(popupContent).openPopup();
+            
+            // Center the map on the user's location
+            map.setView([latitude, longitude], 16);
+        }, function(error) {
+            console.error('Error getting user location:', error);
+        });
+    } else {
+        // Geolocation is not supported by the browser
+        console.error('Geolocation is not supported by this browser.');
+    }
 }
- display_building_names()
+display_building_names();
