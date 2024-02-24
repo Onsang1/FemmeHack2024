@@ -1,23 +1,33 @@
-/* Add a black background color to the top navigation */
+p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400; 
+    font-style: normal; 
+    font-size: 16px; 
+    line-height: 1.5; 
+    color: #333; 
+  }
+ h2 {
+    font-size: 35px;
+ }
+
 .topnav {
     background-color: #9d82d4;
     overflow: hidden;
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Vertically center items */
+    display: flex; 
+    align-items: center; 
 }
 
-/* Style the logo image */
+
 #logo {
-    margin-right: auto; /* Pushes the logo to the left */
-    margin-left: 10px; /* Add space between logo and links */
+    margin-right: auto; 
+    margin-left: 10px; 
 }
 
 #logo img {
-    width: 200px; /* Adjust width as needed */
-    height: 100px; /* Adjust height as needed */
+    width: 200px; 
+    height: 100px; 
 }
 
-/* Style the links inside the navigation bar */
 .topnav a {
     color: white;
     text-align: center;
@@ -26,13 +36,13 @@
     font-size: 17px;
 }
 
-/* Change the color of links on hover */
+
 .topnav a:hover {
-    background-color: #ddd;
+    background-color: #ebd5d5;
     color: black;
 }
 
-/* Add a color to the active/current link */
+
 .topnav a.active {
     background-color: #9d82d4;
     color: white;
@@ -42,37 +52,37 @@
     background-color: white;
     position: relative;
     display: flex;
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
-    height: 100vh; /* Set container height to full viewport height */
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
 }
 
 .map img {
-    max-width: 50%; /* Set maximum width to 100% of the container */
-    height: auto; /* Allow the image to adjust its height proportionally */
-}
-/* New container for map and button */
-.map-container {
-    text-align: center; /* Center children */
-    position: relative; /* Context for absolute positioning */
+    max-width: 50%;
+    height: auto; 
 }
 
-/* Updated goToMapBtn positioning */
+.map-container {
+    text-align: center;
+    position: relative; 
+}
+
+
 .goToMapBtn {
     position: absolute;
-    left: 50%; /* Center the button horizontally */
-    transform: translateX(-50%); /* Adjust for the button's width */
-    bottom: 20px; /* Adjust this value based on your button's size */
+    left: 50%; 
+    transform: translateX(-50%); 
+    bottom: 20px; 
     margin-bottom: 5px;
 
 }
-/* Dropdown container */
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* Dropdown button */
+
 .dropbtn {
     background-color: inherit;
     color: white;
@@ -81,7 +91,7 @@
     cursor: pointer;
 }
 
-/* Dropdown content (hidden by default) */
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -91,38 +101,81 @@
 }
 
 .section-wrapper h2, .section-wrapper p {
-    margin-left: 200px; /* Adjust the value as needed */
-    margin-right: 200px; /* Adjust the value as needed */
+    margin-left: 200px; 
+    margin-right: 200px; 
 }
 
 .goToMapBtn button {
-    background-color: #9d82d4; /* Purple background */
-    color: white; /* White text color */
-    border: none; /* Remove the default border */
-    padding: 10px 20px; /* Add some padding */
-    font-size: 16px; /* Increase font size */
-    cursor: pointer; /* Change mouse cursor on hover */
-    border-radius: 5px; /* Round the corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
-    transition: all 0.3s; /* Smooth transition for hover effects */
+    background-color: #9d82d4; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s; 
 }
 
 .goToMapBtn button:hover {
-    background-color: #8b6bb3; /* Darker shade for hover state */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+    background-color: #8b6bb3; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
 }
 
+
 .site-footer {
-    background-image: url('path/to/your-footer-background.jpg'); /* Path to your image */
-    background-size: cover; /* Ensure the image covers the entire footer */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    height: 150px; /* Set the height of the footer */
-    width: 100%; /* Ensure the footer spans the width of the page */
-    color: white; /* Set the text color for visibility */
-    text-align: center; /* Center the text/content within the footer */
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Vertically center the content */
-    justify-content: center; /* Horizontally center the content */
-    padding: 20px; /* Add some padding around the content */
+    background-color: #ea8a9f; 
+    background-image: linear-gradient(45deg, #ea8a9f, #9d82d4); 
+    padding: 20px;
+    color: #ffffff;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+}
+
+.sitemap-container {
+    text-align: center; 
+}
+
+.sitemap {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sitemap li {
+    margin-bottom: 10px; 
+}
+
+.sitemap li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.sitemap li a:hover {
+    color: #cccccc;
+}
+
+#Flogo {
+    margin-left: 650px; 
+}
+
+#Flogo img {
+    width: 200px; 
+    height: auto;
+}
+
+#ppp {
+    text-align: center;
+    color: white;
+} 
+
+#AboutSection, #Statement, #videotutorial, #credit {
+    margin-left: 50px;
+    margin-right: 50px;
 }
