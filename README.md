@@ -27,3 +27,9 @@ This project was an intensive learning experience for our team. We gained hands-
 ## What's next for Gender-Inclusive Restroom Finder
 
 Looking ahead, we plan to expand our restroom database, incorporate more comprehensive user feedback mechanisms, and continuously update our application based on community needs. Our goal is to extend the functionality of our application, possibly integrating it with other campus resources, and exploring partnerships that could help scale our solution to other universities and public spaces across Pennsylvania, including high schools. By continuously improving the Gender-Inclusive Restroom Finder, we aim to make Penn’s campus—and potentially others—a more welcoming and inclusive environment for everyone.
+
+## Resources used:
+https://leafletjs.com/
+https://leafletjs.com/plugins.html
+https://www.liedman.net/leaflet-routing-machine/api/
+
