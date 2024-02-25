@@ -16,6 +16,7 @@
      <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cover+By+Your+Grace&display=swap" rel="stylesheet">
+    <link rel="icon" type="favicon" href="https://i.postimg.cc/P5fZYv4b/logo.png">
     <title>Restz</title>
 </head>
 <body>
@@ -25,21 +26,24 @@
     </div> -->
     <div class="content">
         <div id="sidebar">
-            <!-- Sidebar content here -->
-            <h1>Start your Search</h1>
-            <!-- search bar-->
-            <!-- <label for="sbar">Input Location:</label> -->
-            <input type="text" id="sname" name="sname" placeholder="Address of your starting location" size="30"><br><br>
-            <!-- <button class = "in-line">Get Directions</button> -->
+            <div id="inside-sidebar">
+                <!-- Sidebar content here -->
+            <img width = "300px" height = "100px"src ="https://i.postimg.cc/P5fZYv4b/logo.png">
             <button class = "in-line" onclick="routeToClosestMarker()">Find the Closest Bathroom Near Me</button>
             <div id="demo"></div>
-            <div>
-                <input type="checkbox" id="red-checkbox" checked> Red
-                <input type="checkbox" id="blue-checkbox" checked> Blue
-                <input type="checkbox" id="green-checkbox" checked> Green
-                <input type="checkbox" id="orange-checkbox" checked> Orange
+            <div id="checkboxes">
+                <input type="checkbox" id="red-checkbox" checked>
+                <label for="red-checkbox" class="checkbox-label">Program Access</label>
+                <input type="checkbox" id="blue-checkbox" checked>
+                <label for="blue-checkbox" class="checkbox-label">Penn Card Access</label>
+                <input type="checkbox" id="green-checkbox" checked>
+                <label for="green-checkbox" class="checkbox-label">Public Access</label>
+                <input type="checkbox" id="orange-checkbox" checked>
+                <label for="orange-checkbox" class="checkbox-label">Residential Access</label>
             </div>
+            
             <div id="routing-directions"></div>
+            </div>
 
         </div>
         <div id="map">
