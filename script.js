@@ -38,7 +38,7 @@ var current_location = L.control.locate({
 var markerData = [
     {id: '1', lat: 39.948932, lng: -75.197501, name: 'Anatomy-Chemistry Building', access:"red", rooms:"309C, 309J, 408A"},
     {id: '2', lat: 39.949674, lng: -75.196699, name: 'John Morgan Building', access:"red", rooms:""},
-    {id: '3', lat: 39.905180, lng: -75.354183, name: 'Annenberg School', access:"red", rooms:"180A, 180B, 181A, 181B, 496A, 597A, 597B"},
+    {id: '3', lat: 39.952989, lng: -75.195851, name: 'Annenberg School', access:"red", rooms:"180A, 180B, 181A, 181B, 496A, 597A, 597B"},
     {id: '4', lat: 39.948681, lng: -75.19666, name: 'Stellar Chance', access:"red", rooms:"M3, M4, 384"},
     {id: '5', lat: 39.948413, lng: -75.197606, name: 'Blockley Hall', access:"red", 
     rooms:"301A, 305A, 307A, 309A, 311A, 315A, 317A, 319A, 409A, 412A, 424A, 502, 526, 616, 645, 716, 721, 806, 838, 906, 938, 1001B, 1005B, 1009B, 1013B, 1015B, 1017B, 1019B, 1101A, 1112A, 1201A, 1207A, 1312A, 1317A, 1407A, 1419"},
