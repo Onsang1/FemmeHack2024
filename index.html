@@ -3,51 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
-     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
-     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
-    <title>Test</title>
-</head>
-<body>
+    <link rel="stylesheet" href="MainPage.css">
     
-    <!-- <div id="map">
-        <script src= "script.js"></script>
-    </div> -->
-    <div class="content">
-        <div id="sidebar">
-            <!-- Sidebar content here -->
-            <h1>Start your Search</h1>
-            <!-- search bar-->
-            <!-- <label for="sbar">Input Location:</label> -->
-            <input type="text" id="sname" name="sname" placeholder="Address of your starting location" size="30"><br><br>
-            <!-- <button class = "in-line">Get Directions</button> -->
-            <button class = "in-line" onclick="routeToClosestMarker()">Find the Closest Bathroom Near Me</button>
-            <div id="demo"></div>
-            <div>
-                <input type="checkbox" id="red-checkbox" checked> Red
-                <input type="checkbox" id="blue-checkbox" checked> Blue
-                <input type="checkbox" id="green-checkbox" checked> Green
-                <input type="checkbox" id="orange-checkbox" checked> Orange
-            </div>
-            <div id="routing-directions"></div>
-
+    <title>Restz</title>
+ </head>   
+<body>
+    <!-- navigation bar -->
+     <div class="topnav">
+        <div id="logo">
+            <img width = "300px" height = "100px"src ="https://i.postimg.cc/P5fZYv4b/logo.png">
         </div>
-        <div id="map">
-            <script src="script.js"></script>
+        <!-- <a class="active" href="#home">Restz</a> -->
+        <a href="./map.html">Map</a>
+        <a href="#About">About</a>
+        <a href="#Mission">Mission</a>
+        <!-- <a href="#Videotutorial">Video Tutorial</a> -->
+        
+
+    </div>
+    <div class="map-container">
+        <div class="map">
+            <img src="https://i.postimg.cc/DwzZzR32/mapIMG.png">   
         </div>
     </div>
+    <div href = "./map.html" class="goToMapBtn">
+        <button onclick="window.location.href='map.html';">Go to Map</button>
+    </div>
+    <div id="About" class = "section-wrapper">
+        <h2>About</h2>
+        <div id="AboutSection"> 
+        <p>      
+            Welcome to Restz, a platform dedicated to promoting inclusivity and accessibility for
+            all students in Pennsylvania. Our mission is to provide a solution to a common challenge faced by members 
+            of the queer community on college campuses: finding gender-neutral bathrooms.
+        </p>
+        <p>
+            At Restz, we believe that every student deserves access to safe and inclusive restroom facilities. Our web app is 
+            designed to empower students by providing them with easily accessible information about available gender-neutral bathrooms 
+            around their schools. We understand the importance of creating a supportive environment where everyone feels comfortable and respected.
+        </p> 
+            <p>         
+                In addition to providing information about existing gender-neutral bathrooms, our app also aims to amplify the voices of students. 
+                We want to hear from you about where new gender-neutral bathrooms are urgently needed. Through our app, you can vote and share your opinions
+                 about adding new facilities to buildings that you believe are in urgent need.
+            </p>
+            <p>
+                By harnessing the power of technology and community engagement, we strive to create positive change and foster a more inclusive campus environment
+                for all students. Join us in our mission to make a difference and create a more welcoming space for everyone.
+                Together, let's break down barriers and build a brighter, more inclusive future at Pennsylvania schools.
+            </p>
 
-    <!-- Add these scripts at the bottom of your HTML, before the closing </body> tag -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script> -->
+        </div>
+    </div>
+    <div id="Mission" class = "section-wrapper">
+        <h2>Mission</h2>
+        <div id="Statement">
+            <p>At our website, we are committed to fostering inclusivity and accessibility for all members of 
+                the UPenn community. Our mission is to provide a user-friendly platform that empowers individuals to
+                easily locate gender-neutral bathrooms across campus. By promoting awareness and facilitating navigation to these 
+                essential facilities, we aim to create a more inclusive environment where everyone feels respected, valued,
+                and supported in their daily activities. Through our efforts, we strive to contribute to a campus culture that prioritizes diversity, 
+                equity, and belonging for all. </p>
+           
+        </div>
+    </div>
+    <!-- <div id="Videotutorial" class = "section-wrapper">
+        <h2> Video Tutorial</h2>
+    </div> -->
+    <div id = "creditSection" class = "section-wrapper">
+        <h2>Credits</h2>
+        <div id = "credit">
+            <p>Logo: we found our logo in canva</p>
+    </div>
+    </div>
+    <footer class="site-footer">
+        <div class="sitemap-container">
+            <h3>Site Map</h3>
+            <ul class="sitemap">
+                <li><a href="./index.html">Map</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#Mission">Mission</a></li>
+                <li><a href="#Videotutorial">Video Tutorial</a></li>
+            </ul>
+        </div>
+        <div id="Flogo">
+            <img width = "300px" height = "100px"src ="https://i.postimg.cc/P5fZYv4b/logo.png">
+        </div>
+        
+        <p id = "ppp">@2024 FemmeHacks. All rights reserved.</p> 
+        
+        
+    </footer>
 </body>
-</html>

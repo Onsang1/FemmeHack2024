@@ -1,0 +1,183 @@
+p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+h2 {
+  font-size: 35px;
+}
+
+.topnav {
+  background-color: #9d82d4;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+#logo {
+  margin-right: auto;
+  margin-left: 10px;
+}
+
+#logo img {
+  width: 200px;
+  height: 100px;
+}
+
+.topnav a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.topnav a:hover {
+  background-color: #ebd5d5;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #9d82d4;
+  color: white;
+}
+
+.map {
+  background-color: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+}
+
+.map img {
+  margin-top: 50px;
+  max-width: 50%;
+  height: auto;
+}
+
+.map-container {
+  text-align: center;
+  position: relative;
+}
+
+.goToMapBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: -10px;
+  /* left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  margin: 20px; */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: inherit;
+  color: white;
+  padding: 14px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.section-wrapper h2,
+.section-wrapper p {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.goToMapBtn button {
+  background-color: #9d82d4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.goToMapBtn button:hover {
+  background-color: #8b6bb3;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.site-footer {
+  background-color: #ea8a9f;
+  background-image: linear-gradient(45deg, #ea8a9f, #9d82d4);
+  padding: 20px;
+  color: #ffffff;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sitemap-container {
+  text-align: center;
+}
+
+.sitemap {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sitemap li {
+  margin-bottom: 10px;
+}
+
+.sitemap li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.sitemap li a:hover {
+  color: #cccccc;
+}
+
+#Flogo {
+  margin-left: 650px;
+}
+
+#Flogo img {
+  width: 200px;
+  height: auto;
+}
+
+#ppp {
+  text-align: center;
+  color: white;
+}
+
+#AboutSection,
+#Statement,
+#videotutorial,
+#credit {
+  margin-left: 50px;
+  margin-right: 50px;
+}
