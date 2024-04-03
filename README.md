@@ -1,7 +1,9 @@
 # FemmeHack2024
 
 Restz won "Most Innovative Hack" at UPenn's FemmeHacks 2024.
+
 See more details here: https://devpost.com/software/rest-79uv5e
+
 Deployed Link: https://65da9a8496ff210008ce65d2--illustrious-starburst-e6ca66.netlify.app
 
 ## Inspiration
@@ -15,5 +17,7 @@ The Gender-Inclusive Restroom Finder is a web application that helps users locat
 ## Resources used:
 
 https://leafletjs.com/
+
 https://leafletjs.com/plugins.html
+
 https://www.liedman.net/leaflet-routing-machine/api/
